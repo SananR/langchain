@@ -2,22 +2,23 @@ from typing import Dict, List
 
 from langchain.agents.agent_toolkits.base import BaseToolkit
 from langchain.tools import BaseTool
+from langchain.tools.discord.prompt import (
+    ASSIGN_ROLE_PROMPT,
+    CREATE_TEXT_CHANNEL_PROMPT,
+    CREATE_VOICE_CHANNEL_PROMPT,
+    DELETE_MESSAGE_PROMPT,
+    DELETE_TEXT_CHANNEL_PROMPT,
+    DELETE_VOICE_CHANNEL_PROMPT,
+    EDIT_MESSAGE_PROMPT,
+    JOIN_VOICE_CHANNEL_PROMPT,
+    KICK_USER_PROMPT,
+    LEAVE_VOICE_CHANNEL_PROMPT,
+    SEND_MESSAGE_PROMPT,
+    SERVER_INFO_PROMPT,
+)
 from langchain.tools.discord.tool import DiscordAction
 from langchain.utilities.discord import DiscordAPIWrapper
-from langchain.tools.discord.prompt import(
-    ASSIGN_ROLE_PROMPT,
-    KICK_USER_PROMPT,
-    CREATE_TEXT_CHANNEL_PROMPT,
-    DELETE_TEXT_CHANNEL_PROMPT,
-    CREATE_VOICE_CHANNEL_PROMPT,
-    JOIN_VOICE_CHANNEL_PROMPT,
-    LEAVE_VOICE_CHANNEL_PROMPT,
-    DELETE_VOICE_CHANNEL_PROMPT,
-    SERVER_INFO_PROMPT,
-    SEND_MESSAGE_PROMPT,
-    EDIT_MESSAGE_PROMPT,
-    DELETE_MESSAGE_PROMPT
-)
+
 
 class DiscordToolkit(BaseToolkit):
     """Discord Toolkit."""
@@ -25,7 +26,9 @@ class DiscordToolkit(BaseToolkit):
     tools: List[BaseTool] = []
 
     @classmethod
-    def from_discord_api_wrapper(cls, discord_api_wrapper: DiscordAPIWrapper) -> "DiscordToolkit":
+    def from_discord_api_wrapper(
+        cls, discord_api_wrapper: DiscordAPIWrapper
+    ) -> "DiscordToolkit":
         operations: List[Dict] = [
             {
                 "mode": "assign_role",

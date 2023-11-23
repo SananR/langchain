@@ -1,5 +1,7 @@
 import os
+
 from discord.ext import commands
+
 from langchain.agents import AgentType, initialize_agent
 from langchain.agents.agent_toolkits.discord.toolkit import DiscordToolkit
 from langchain.llms import OpenAI
@@ -26,7 +28,7 @@ agent = initialize_agent(
     discord_toolkit.get_tools(),
     llm,
     agent=AgentType.ZERO_SHOT_REACT_DESCRIPTION,
-    verbose=True
+    verbose=True,
 )
 
 # Add the DiscordAPIWrapper cog to the bot
